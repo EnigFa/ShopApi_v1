@@ -4,15 +4,8 @@ using Shop.Domain.Models;
 
 namespace Shop.App;
 
-public class UserCheckMiddleware
+public class UserCheckMiddleware(RequestDelegate next)
 {
-    private readonly RequestDelegate _next;
-
-    public UserCheckMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-
     public async Task InvokeAsync(HttpContext context)
     {
         if (context.Request.Method == "POST" && context.Request.Path == "/api/user/register")
@@ -40,6 +33,6 @@ public class UserCheckMiddleware
             }
         }
 
-        await _next(context);
+        await next(context);
     }
 }

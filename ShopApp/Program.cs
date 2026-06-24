@@ -28,8 +28,9 @@ public class Program
         //app.UseHttpsRedirection();
 
         //app.UseAuthorization();
+        app.UseStaticFiles();
 
-        app.UseMiddleware<UserCheckMiddleware>();
+        // app.UseMiddleware<UserCheckMiddleware>();
 
         app.MapControllers();
 
